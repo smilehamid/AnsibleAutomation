@@ -10,10 +10,6 @@
       command: uname -a
       register: os_version
 
-    - name: Check CPU usage
-      command: top -bn1 | grep "Cpu(s)"
-      register: cpu_usage
-
     - name: Check memory usage
       command: free -m
       register: memory_usage
@@ -27,7 +23,7 @@
       register: network_config
 
     - name: List running processes
-      command: ps aux --sort=-%mem
+      command: ps -h
       register: running_processes
 
     - name: Print uptime result
@@ -37,10 +33,6 @@
     - name: Print OS version
       debug:
         msg: "OS Version: {{ os_version.stdout }}"
-
-    - name: Print CPU usage
-      debug:
-        msg: "CPU Usage: {{ cpu_usage.stdout }}"
 
     - name: Print memory usage
       debug:
