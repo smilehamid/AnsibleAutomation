@@ -1,1 +1,51 @@
+---
+- name: Gather comprehensive system information
+  hosts: all
+  tasks:
+    - name: Run uptime command
+      command: uptime -p
+      register: uptime_result
 
+    - name: Get OS version
+      command: uname -a
+      register: os_version
+
+    - name: Check memory usage
+      command: free -m
+      register: memory_usage
+
+    - name: Check disk usage
+      command: df -h
+      register: disk_usage
+
+    - name: Get network configuration
+      command: ip a
+      register: network_config
+
+    - name: List running processes
+      command: ps -h
+      register: running_processes
+
+    - name: Print uptime result
+      debug:
+        msg: "Uptime: {{ uptime_result.stdout }}"
+
+    - name: Print OS version
+      debug:
+        msg: "OS Version: {{ os_version.stdout }}"
+
+    - name: Print memory usage
+      debug:
+        msg: "Memory Usage: {{ memory_usage.stdout }}"
+
+    - name: Print disk usage
+      debug:
+        msg: "Disk Usage: {{ disk_usage.stdout }}"
+
+    - name: Print network configuration
+      debug:
+        msg: "Network Configuration: {{ network_config.stdout }}"
+
+    - name: Print running processes
+      debug:
+        msg: "Running Processes: {{ running_processes.stdout }}"
