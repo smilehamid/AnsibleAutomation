@@ -1,2 +1,2 @@
 # AnsibleAutomation
-This is is a repo for ansible automation codes
+This is a repo for ansible automation codes.
